@@ -25,4 +25,21 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function show()
+    {
+        return view('index');
+    }
+    public function concrettebox()
+    {
+        return view('calculate.concrettebox');
+    }
+    public function calculation()
+    {
+        return view('calculate.calculation');
+    }
+    public function concrette()
+    {
+        return view('calculate.concrette');
+    }
+
 }

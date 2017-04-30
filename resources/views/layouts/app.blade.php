@@ -11,7 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+        {!! HTML::style('Mentor/css/font-awesome.min.css') !!}
+        {!! HTML::style('Mentor/css/bootstrap.min.css') !!}
+        {!! HTML::style('Mentor/css/imagehover.min.css') !!}
+        {!! HTML::style('Mentor/css/style.css') !!}
 
     <!-- Scripts -->
     <script>
@@ -80,7 +85,11 @@
 
         @yield('content')
     </div>
-
+    {!! HTML::script('Mentor/js/jquery.min.js') !!}
+    {!! HTML::script('Mentor/js/jquery.easing.min.js') !!}
+    {!! HTML::script('Mentor/js/bootstrap.min.js') !!}
+    {!! HTML::script('Mentor/js/custom.js') !!}
+    {!! HTML::script('Mentor/contactform/contactform.js') !!}
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

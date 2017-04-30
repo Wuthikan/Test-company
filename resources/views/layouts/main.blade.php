@@ -2,75 +2,94 @@
 <html lang="{{ config('app.locale') }}">
   <head>
       <title>company</title>
-      {!! HTML::style('bootstrap/css/bootstrap.min.css') !!}
+      <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans"> -->
+      {!! HTML::style('Mentor/css/font-awesome.min.css') !!}
+      {!! HTML::style('Mentor/css/bootstrap.min.css') !!}
+      {!! HTML::style('Mentor/css/imagehover.min.css') !!}
+      {!! HTML::style('Mentor/css/style.css') !!}
   </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-          <nav class="navbar navbar-default">
-            <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Brand</a>
-              </div>
+  <!--Navigation bar-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Com<span>pany</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url('/home') }} ">หน้าแรก</a></li>
+        <li><a href="{{ url('/calculation') }} ">คำนวณ</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li>
+        <!-- Authentication Links -->
+        @if (Auth::guest())
+            <li><a href="{{ route('login') }}">Login</a></li>
+        @else
+            <li class="ิdropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
 
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                  <li><a href="#">หน้าหลัก</a></li>
-                  <li><a href="#">สินค้า</a></li>
-                  <li><a href="#">คำนวณ</a></li>
-                  <li><a href="#">ตระกร้าสินค้า</a></li>
-                  <li><a href="#">ตารางส่งของ</a></li>
-                  <li><a href="#">ข้อมูลลูกค้า</a></li>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
                 </ul>
+            </li>
+        @endif
+      </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-
-                      <li class="dropdown">
-                        @if (Auth::check())
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ Auth::user()->name }} <span class="caret"></span></a>
-
-                                  <ul class="dropdown-menu">
-                                    <li><a href="#">ข้อมูลส่วนตัว</a></li>
-                                    <li><a href="#">Picture</a></li>
-                                      <li role="separator" class="divider"></li>
-                                      <li>
-                                            <a href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    {{ csrf_field() }}
-                                            </form>
-                                      </li>
-                                  </ul>
-                           @else
-                                  <a href="/login" > เข้าสู่ระบบ </span></a>
-
-                           @endif
-
-
-                      </li>
-                </ul>
-              </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-          </nav>
       </div>
     </div>
-  </div>
+  </nav>
+  <!--/ Navigation bar-->
+
 
         @yield('content')
+        <footer id="footer" class="footer">
+          <div class="container text-center">
 
-    {!! HTML::script('js/jquery-3.2.1.min.js') !!}
-    {!! HTML::script('bootstrap/js/bootstrap.min.js') !!}
+
+
+          <ul class="social-links">
+            <li><a href="#link"><i class="fa fa-twitter fa-fw"></i></a></li>
+            <li><a href="#link"><i class="fa fa-facebook fa-fw"></i></a></li>
+            <li><a href="#link"><i class="fa fa-google-plus fa-fw"></i></a></li>
+            <li><a href="#link"><i class="fa fa-dribbble fa-fw"></i></a></li>
+            <li><a href="#link"><i class="fa fa-linkedin fa-fw"></i></a></li>
+          </ul>
+            ©2016 Mentor Theme. All rights reserved
+            <div class="credits">
+                <!--
+                    All the links in the footer should remain intact.
+                    You can delete the links only if you purchased the pro version.
+                    Licensing information: https://bootstrapmade.com/license/
+                    Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Mentor
+                -->
+                Designed by <a href="https://bootstrapmade.com/">Free Bootstrap Themes</a>
+            </div>
+          </div>
+        </footer>
+        <!--/ Footer-->
+        {!! HTML::script('Mentor/js/jquery.min.js') !!}
+        {!! HTML::script('Mentor/js/jquery.easing.min.js') !!}
+        {!! HTML::script('Mentor/js/bootstrap.min.js') !!}
+        {!! HTML::script('Mentor/js/custom.js') !!}
+        {!! HTML::script('Mentor/contactform/contactform.js') !!}
+
 </body>
 </html>

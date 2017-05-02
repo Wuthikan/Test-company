@@ -487,6 +487,7 @@
           </div>
           <div id="sendmessage">Your message has been sent. Thank you!</div>
           <div id="errormessage"></div>
+
           <form action="" method="post" role="form" class="contactForm">
               <div class="col-md-6 col-sm-6 col-xs-12 left">
                 <div class="form-group">

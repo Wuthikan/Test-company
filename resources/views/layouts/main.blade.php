@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
   <head>
       <title>company</title>
-      <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans"> -->
+      <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
       {!! HTML::style('Mentor/css/font-awesome.min.css') !!}
       {!! HTML::style('Mentor/css/bootstrap.min.css') !!}
       {!! HTML::style('Mentor/css/imagehover.min.css') !!}
@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ url('/home') }} ">หน้าแรก</a></li>
         <li><a href="{{ url('/calculation') }} ">คำนวณ</a></li>
-        <li><a href="#courses">Courses</a></li>
+        <li><a href="{{ url('/product') }}">สินค้า</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li>
         <!-- Authentication Links -->

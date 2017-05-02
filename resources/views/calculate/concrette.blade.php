@@ -19,7 +19,15 @@
           <img src="mentor/img/course01.jpg" class="img-responsive">
         </div>
           <div class="col-md-6 col-sm-6 col-xs-12 right">
+
           <form  role="form" class="contactForm form-horizontal">
+            @if($errors->any())
+    <ul class="alert alert-danger">
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+@endif
           <br>
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-3 control-label">ยาว (เมตร)</label>
@@ -54,7 +62,7 @@
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-5 control-label">คอนกรีต น้ำหนัก (ตัน)</label>
               <div class="col-sm-7">
-              <input type="text" name="result" class="form-control form" id="result1" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <input type="text" name="ton" class="form-control form" id="ton" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
             </div>
                 <div class="validation"></div>
             </div>
@@ -62,30 +70,32 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">โม่เล็ก จำนวน (คัน)</label>
                   <div class="col-sm-7">
-                <input type="text" class="form-control" name="result3" id="result3" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <input type="text" class="form-control" name="smallCar" id="smallCar" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
               </div>
                 <div class="validation"></div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-5 control-label">โม่ใหญ่ จำนวน (คัน)</label>
                   <div class="col-sm-7">
-                <input type="text" class="form-control" name="result4" id="result4" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <input type="text" class="form-control" name="bigCar" id="bigCar" placeholder="" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
               </div>
                 <div class="validation"></div>
             </div>
+            {!! Form::open(['url' => 'concrettebox']) !!}
             <div class="form-group">
               <label for="inputEmail3" class="col-sm-5 control-label">คอนกรีต ปริมาณ (คิว)</label>
                 <div class="col-sm-7">
-                <input type="text" class="form-control" name="result2" id="result2" placeholder="" data-rule="email" data-msg="Please enter a valid email" />
+                <input type="text" class="form-control" name="CC" id="CC" placeholder="" data-rule="email" data-msg="Please enter a valid email" />
               </div>
                 <div class="validation"></div>
             </div>
             <div class="header-section text-right">
               <button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">สั่งซื้อ</button>
           </div>
+          {!! Form::close() !!}
+
                 </form>
           </div>
-
 
 <script>
 
@@ -96,10 +106,10 @@ function Calculate()
   var minutes = document.getElementById('width').value;
   var thick = document.getElementById('thick').value;
   var permin = parseFloat(resources) / 60;
-  document.getElementById('result1').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
-  document.getElementById('result2').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
-  document.getElementById('result3').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
-  document.getElementById('result4').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
+  document.getElementById('ton').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
+  document.getElementById('smallCar').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
+  document.getElementById('bigCar').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
+  document.getElementById('CC').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
 
   document.form1.submit();
 }

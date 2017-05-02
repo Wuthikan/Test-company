@@ -17,8 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('product', 'ProductController');
+
+
 Route::get('/home', 'HomeController@index');
 Route::get('/index','HomeController@show' );
-Route::get('/calculation','HomeController@calculation' );
-Route::get('/concrettebox','HomeController@concrettebox' );
-Route::get('/concrette','HomeController@concrette' );
+
+Route::get('/calculation','CalculationController@calculation' );
+Route::get('/calculation/concrettebox','CalculationController@concrettebox' );
+Route::get('/calculation/concrette','CalculationController@concrette' );

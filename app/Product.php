@@ -8,4 +8,8 @@ class Product extends Model
 {
   protected $table = "product";
   protected $fillable = ['name' ,'detail' ,'size','price','pic','type'];
+
+  public function baskets(){
+    return $this->hasMany('App\Baskets');
+  }
 }

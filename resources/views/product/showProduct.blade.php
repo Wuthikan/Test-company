@@ -35,7 +35,10 @@
                 <div class="col-xs-4 col-md-6 col-sm-6"></div>
                 <div class="col-xs-4 col-md-3 col-sm-3">
                   {!! Form::open(['method' => 'DELETE', 'url' => 'product/'. $products->id ]) !!}
-            			{!! Form::submit('ลบ', ['class'=>'btn btn-block btn-submit']) !!}
+                  <button type="submit" class="btn btn-block btn-submit" onclick="return confirm('Are you sure to delete this data');">
+                    ลบ
+                  </button>
+                  <!-- {!! Form::submit('ลบ', ['class'=>'btn btn-block btn-submit']) !!} -->
             			{!! Form::close() !!}
               </div>
             </div>

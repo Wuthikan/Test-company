@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::resource('product', 'ProductController');
 
+Route::resource('basket', 'BasketController');
+
 
 Route::get('/home', 'HomeController@index');
 Route::get('/index','HomeController@show' );

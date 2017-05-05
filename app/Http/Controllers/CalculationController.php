@@ -37,9 +37,8 @@ class CalculationController extends Controller
   {
       return view('calculate.concrette');
   }
-  // public function addconcrete(calculationRequest $request)
-  // {
-  //     return view('calculate.calculation');
-  // }
+
+
+
 
 }

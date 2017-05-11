@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use Cookie;
-// use App\Http\Requests;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use App\Baskets;
 use App\Product;
 use App\Typeproduct;
+use App\Baskets;
+use App\Invoice;
+use App\Listproductinvoice;
 
-// use Illuminate\Http\Request;
-use App\Http\Requests\BasketsRequest;
+use Request;
+use App\Http\Requests\InvoiceRequest;
 use Auth;
 
-class BasketController extends Controller
+class InvoiceController extends Controller
 {
-
-      public function __construct()
-      {
-          $this->middleware('auth');
-      }
     /**
      * Display a listing of the resource.
      *
@@ -28,11 +24,7 @@ class BasketController extends Controller
      */
     public function index()
     {
-
-      $buskets = Baskets::whereemployee()->get();
-
-      return view('baskets', compact('buskets'));
-
+        //
     }
 
     /**
@@ -42,7 +34,8 @@ class BasketController extends Controller
      */
     public function create()
     {
-
+        $baskets = Baskets::get();
+        return view('invoice.PriceForCus', compact('baskets'));
     }
 
     /**
@@ -51,23 +44,31 @@ class BasketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BasketsRequest $request)
+    public function store(InvoiceRequest $request)
     {
-      $type =  $request->get('type');
-          if($type==1){
-                $baskets = new Baskets($request->all());
-                $baskets->idemployee = Auth::user()->id;
-                $baskets->idproduct = '1';
-                $baskets->save();
+      $invoices = new Invoice($request->all());
+      $invoices->save();
+      $dateinvoice   = Invoice::orderBy('id', 'desc')->first();
 
-                return redirect('basket');
-          }
-          else {
-            $baskets = new Baskets($request->all());
-            $baskets->idemployee = Auth::user()->id;
-            $baskets->idproduct = '2';
-            $baskets->save();
-          }
+      $date   = Baskets::whereemployee()->get();
+      foreach ($date as $basket) {
+        $idinvoice = $dateinvoice->id;
+        $idproduct = $basket->idproduct;
+        $amount = $basket->amount;
+        $extra = $basket->extra;
+
+        $array = ['idinvoice' => $idinvoice,
+         'idproduct' => $idproduct,
+         'amount' => $amount,
+         'extra' => $extra
+          ];
+          $lish = new Listproductinvoice($array);
+          $lish->save();
+      }
+      $iduser = Auth::user()->id;
+      $basketZ = Baskets::where('idemployee', $iduser);
+      $basketZ->delete();
+
     }
 
     /**
@@ -101,7 +102,7 @@ class BasketController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**
@@ -112,20 +113,6 @@ class BasketController extends Controller
      */
     public function destroy($id)
     {
-      $basket = Baskets::findOrFail($id);
-      $basket->delete();
-      return redirect('basket');
+        //
     }
-    public function deleteRequest($id)
-      {
-          $request = Baskets::where('idemployee', $id);
-          $request->delete();
-          return redirect('home');
-      }
-      public function addBasket(BasketsRequest $request , $id)
-      {
-        $basket = Baskets::findOrFail($id);
-        $basket->update($request->all());
-           return back();
-      }
 }

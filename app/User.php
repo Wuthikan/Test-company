@@ -29,4 +29,7 @@ class User extends Authenticatable
     public function baskets(){
       return $this->hasMany('App\Baskets');
     }
+    public function invoices(){
+      return $this->hasMany('App\Invoice');
+    }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+s@extends('layouts.main')
 
 @section('content')
 <section id ="contact" class="section-padding">
@@ -118,7 +118,7 @@ function Calculate()
   document.getElementById('ton').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
   document.getElementById('smallCar').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
   document.getElementById('bigCar').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
-  document.getElementById('amount').value=parseFloat(permin) * parseFloat(minutes)* parseFloat(thick);
+  document.getElementById('amount').value= (parseFloat(permin) * parseFloat(minutes)* parseFloat(thick)).toFixed(0);
 
   document.form1.submit();
 }

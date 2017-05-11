@@ -139,7 +139,7 @@ Banner
 	margin-top: 30px;
 }
 .quote .btn{
-    background-color: 
+    background-color:
 }
 .modal-dialog {
     width: 600px;
@@ -187,7 +187,7 @@ Banner
     top:10px;
     margin-left: -2.5px;
     transition:all 0.3s ease-in;
- 
+
      -webkit-animation-name: rotateplane; /* Chrome, Safari, Opera */
     -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
     animation-name: rotateplane;
@@ -336,7 +336,7 @@ Cta
     margin: 0 auto;
     line-height: 34px !important;
 }
-.cta-2-form input[type="email"] {
+.cta-2-form input[type="name"] {
     border: 0px solid #CCC;
     padding: 13px 40px;
     font-size: 18px;
@@ -502,7 +502,7 @@ Contact Us
     width: 100%;
 	margin-bottom: 15px;
     border-radius: 0;
-    
+
 }
 .textarea {
     height: 228px;
@@ -707,7 +707,7 @@ Responsive media queries
     }
     .price-table .pricing-head h4 {
     font-size: 18px;
-    }   
+    }
 }
 @media (min-width: 20px) and (max-width: 450px) {
     .text-dec {
@@ -760,7 +760,7 @@ Responsive media queries
     .cta-2-form-submit-btn {
     font-size: 10px;
     }
-    .cta-2-form input[type="email"] {
+    .cta-2-form input[type="name"] {
     padding: 13px 10px;
     font-size: 10px;
     min-width: 187px;

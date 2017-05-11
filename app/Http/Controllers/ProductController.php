@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Cookie;
+use Session;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Typeproduct;
+use App\Stock;
 
 use Request;
 use App\Http\Requests\ProductRequest;
@@ -44,6 +46,7 @@ class ProductController extends Controller
     public function create()
     {
         $typeproducts = Typeproduct::get();
+             
         return view('product.createProduct', compact('typeproducts'));
     }
 
@@ -82,7 +85,8 @@ class ProductController extends Controller
       $products = Product::find($id);
         if(empty($products))
           abort(404);
-        return view('product.showProduct', compact('products'));
+          $stocks = Stock::whereproduct($id)->get();
+        return view('product.showProduct', compact('products','stocks'));
     }
 
     /**
@@ -95,6 +99,7 @@ class ProductController extends Controller
     {
       $products = Product::find($id);
        $typeproducts = Typeproduct::get();
+       dd($stock);
         if(empty($products))
           abort(404);
         return view('product.editProduct', compact('products','typeproducts'));

@@ -23,9 +23,101 @@
             <h3 class="det-txt"> {{ $products->name }}</h3>
             <h4 class="sm-txt">{{ $products->price }} ฿</h4>
           </hgroup>
-            <p class="det-p">{{ $products->detail }}</p>
-            <p class="text-par">ขนาด: {{ $products->size }}<br>ประเภท: {{ $products->type }}</p>
-            </p>
+
+
+              <p class="det-p">{{ $products->detail }}</p>
+              <p class="text-par">ขนาด: {{ $products->size }}<br>ประเภท: {{ $products->type }}</p>
+              <p class="text-par">
+                @if($errors->any())
+                    <ul class="alert alert-danger">
+                      @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                @endif
+                @forelse($stocks as $stocks)
+                สินค้าในคลัง
+                         {{ $stocks->amount }}
+                แผ่น
+
+                <a href="#" data-target="#editStock" data-toggle="modal"> Edit </a>
+
+                <!--Modal box delete-->
+                <div class="modal fade" id="editStock" role="dialog">
+                  <div class="modal-dialog modal-sm">
+                    <!-- Modal content no 1-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center form-title">แก้ไขสินค้าในคลัง</h4>
+                      </div>
+                      <div class="modal-body padtrbl text-center">
+                          สินค้าในคลังปัจจุบัน  {{ $stocks->amount }} แผ่น
+                        <div class="login-box-body">
+                          <div class="form-group">
+                            <form action="{{ route('stock.edit', ['id'=>$stocks->id]) }}">
+                                <input class="form-control" name="amount" id="amount" type="text" autocomplete="off" />
+                                <br>
+                                <button type="submit" class="btn btn-bg green btn-block"  >
+                                 ตกลง
+                               </button>
+                             </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                @empty
+                @if($errors->any())
+                    <ul class="alert alert-danger">
+                      @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                @endif
+                  <a href="#" data-target="#createStock" data-toggle="modal"> เพิ่มสินค้าในคลัง </a>
+                  <!--Modal box delete-->
+                  <div class="modal fade" id="createStock" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                      <!-- Modal content no 1-->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title text-center form-title">เพิ่มสินค้าในคลัง</h4>
+                        </div>
+                        <div class="modal-body padtrbl">
+
+                          <div class="login-box-body">
+                            <div class="form-group">
+                                  {!! Form::open(['url' => 'stock']) !!}
+                                  <input class="form-control" name="amount" id="amount" type="text" autocomplete="off" />
+                                  <input class="form-control" name="idproduct" id="idproduct" type="hidden" value="{{ $products->id }}" />
+                                      <br>
+                                  <button type="submit" class="btn btn-bg green btn-block"  >
+                                   ตกลง
+                                 </button>
+                                {!! Form::close() !!}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforelse
+
+              </p>
+              <div class="cta-2-form text-center">
+               {!! Form::open(['url' => 'basket']) !!}
+                     <input type="hidden" name="type" id="type" value="{{ $products->type }}" >
+                     <input type="hidden" name="idproduct" id="idproduct" value="{{ $products->idproduct }}" >
+                     <input type="hidden" name="extra" id="extra" value="" >
+                     <input name="amount" id="amount" placeholder="กรอกจำนวณสินค้าที่ต้องการ" type="name">
+                     <input class="cta-2-form-submit-btn" value="สั่งซื้อ" type="submit">
+                {!! Form::close() !!}
+              </div>
             <div class="row">
                 <div class="col-xs-4 col-md-3 col-sm-3">
                   <a class="btn btn-block btn-submit" href="{{ url("product/{$products->id}/edit") }}">

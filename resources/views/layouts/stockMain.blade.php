@@ -23,10 +23,10 @@
       <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ url('/home') }} ">หน้าแรก</a></li>
-        <li><a href="{{ url('/calculation') }} ">คำนวณ</a></li>
-        <li><a href="{{ url('/product') }}">สินค้า</a></li>
-        <li><a href="{{ url('/basket') }}">ตะกร้าสินค้า</a></li>
-        <li><a href="{{ url('/Homestock') }}">ฝ่ายคลัง</a></li>
+        <li><a href="{{ url('/product') }}">งานจอง</a></li>
+        <li><a href="{{ url('/calculation') }} ">จ่ายสินค้า</a></li>
+        <li><a href="{{ url('/Homestock') }}">รายงาน</a></li>
+        <li><a href="{{ url('/basket') }}">ฝ่ายขาย</a></li>
         <!-- Authentication Links -->
         @if (Auth::guest())
             <li><a href="{{ route('login') }}">Login</a></li>
